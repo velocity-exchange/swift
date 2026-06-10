@@ -29,12 +29,21 @@ jobs:
           ref: ${{ env.DRIFT_RS_REF }}
           path: drift-rs
 
+      - name: Generate protocol-v2-shadow read token
+        id: shadow-token
+        uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # v1
+        with:
+          app-id: ${{ vars.VELOCITY_SDK_READER_APP_ID }}
+          private-key: ${{ secrets.VELOCITY_SDK_READER_PRIVATE_KEY }}
+          owner: drift-labs
+          repositories: protocol-v2-shadow
+
       - name: Checkout protocol-v2-shadow
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
         with:
           repository: drift-labs/protocol-v2-shadow
           ref: ${{ env.SHADOW_REF }}
-          token: ${{ secrets.GH_PAT }}
+          token: ${{ steps.shadow-token.outputs.token }}
           path: protocol-v2-shadow
 
       - name: Configure AWS credentials
