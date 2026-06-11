@@ -282,7 +282,7 @@ pub async fn process_order(
 
     if let Err(err) = validate_signed_order_params(
         &order_params,
-        market.map(|m| m.amm.min_order_size).unwrap_or(0),
+        market.map(|m| m.market_stats.min_order_size).unwrap_or(0),
     ) {
         log::warn!(
             target: "server",
