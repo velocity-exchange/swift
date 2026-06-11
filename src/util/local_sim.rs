@@ -16,8 +16,8 @@ use std::{
 use anchor_lang::AccountDeserialize;
 use drift::{
     controller::orders::place_perp_order,
-    error::{DriftResult, ErrorCode},
-    sdk::{DriftAccounts, OwnedAccount},
+    error::{VelocityResult, ErrorCode},
+    sdk::{VelocityAccounts, OwnedAccount},
     state::{
         oracle_map::OracleMap,
         order_params::{OrderParams, PlaceOrderOptions},
@@ -58,11 +58,11 @@ fn build_infos<'a>(entries: &'a mut [(Pubkey, OwnedAccount)]) -> Vec<AccountInfo
 /// `State` is Borsh-only and not safely castable from the Pod IDL mirror.
 pub fn simulate_place_perp_order(
     user: &User,
-    accounts: &mut DriftAccounts,
+    accounts: &mut VelocityAccounts,
     state_bytes: &[u8],
     order_params: OrderParams,
     max_margin_ratio: Option<u16>,
-) -> DriftResult<()> {
+) -> VelocityResult<()> {
     let state = NativeState::try_deserialize(&mut &*state_bytes)
         .map_err(|_| ErrorCode::UnableToLoadAccountLoader)?;
 
