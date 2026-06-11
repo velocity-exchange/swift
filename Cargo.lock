@@ -1436,30 +1436,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "77c90badedccf4105eca100756a0b1289e191f6fcbdadd3cee1d2f614f97da8f"
 
 [[package]]
-name = "drift"
-version = "2.162.0"
-dependencies = [
- "anchor-lang",
- "anchor-spl",
- "arrayref",
- "base64 0.13.1",
- "borsh",
- "bytemuck",
- "byteorder",
- "drift-macros",
- "enumflags2",
- "hex",
- "num-integer",
- "num-traits",
- "pyth-client",
- "pyth_lazer",
- "solana-program",
- "solana-security-txt",
- "static_assertions",
- "uint",
-]
-
-[[package]]
 name = "drift-idl-gen"
 version = "0.2.0"
 dependencies = [
@@ -1513,7 +1489,6 @@ dependencies = [
  "bytemuck",
  "crossbeam",
  "dashmap",
- "drift",
  "drift-idl-gen",
  "drift-pubsub-client",
  "env_logger",
@@ -1545,6 +1520,7 @@ dependencies = [
  "tokio",
  "tokio-stream",
  "tokio-tungstenite 0.28.0",
+ "velocity",
  "yellowstone-grpc-client",
  "yellowstone-grpc-proto",
 ]
@@ -5811,7 +5787,6 @@ dependencies = [
  "clap",
  "dashmap",
  "dotenv",
- "drift",
  "drift-rs",
  "ed25519-dalek 1.0.1",
  "env_logger",
@@ -5843,6 +5818,7 @@ dependencies = [
  "tower-http 0.6.10",
  "urlencoding",
  "uuid",
+ "velocity",
  "zstd",
 ]
 
@@ -6540,6 +6516,30 @@ name = "vcpkg"
 version = "0.2.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "accd4ea62f7bb7a82fe23066fb0957d48ef677f6eeb8215f372f52e48bb32426"
+
+[[package]]
+name = "velocity"
+version = "2.162.0"
+dependencies = [
+ "anchor-lang",
+ "anchor-spl",
+ "arrayref",
+ "base64 0.13.1",
+ "borsh",
+ "bytemuck",
+ "byteorder",
+ "drift-macros",
+ "enumflags2",
+ "hex",
+ "num-integer",
+ "num-traits",
+ "pyth-client",
+ "pyth_lazer",
+ "solana-program",
+ "solana-security-txt",
+ "static_assertions",
+ "uint",
+]
 
 [[package]]
 name = "version_check"
