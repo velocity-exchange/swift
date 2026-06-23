@@ -7,11 +7,11 @@ ENV PATH="/root/.cargo/bin:${PATH}"
 RUN rustup component add rustfmt
 
 WORKDIR /app
-# protocol-v2-shadow (the `drift` crate) and drift-rs are consumed as path-dep
+# velocity-v1 (the `drift` crate) and drift-rs are consumed as path-dep
 # siblings of swift. The build context is the parent dir holding all three; CI
 # checks them out side by side (see .github/workflows). Preserve the relative
-# layout so Cargo's `../drift-rs` / `../protocol-v2-shadow` paths resolve.
-COPY protocol-v2-shadow ./protocol-v2-shadow
+# layout so Cargo's `../drift-rs` / `../velocity-v1` paths resolve.
+COPY velocity-v1 ./velocity-v1
 COPY drift-rs ./drift-rs
 COPY swift ./swift
 

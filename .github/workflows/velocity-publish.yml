@@ -2,9 +2,9 @@
 # the tagged commit and pushes swift:vX.Y.Z to Velocity ECR. Tags there
 # are IMMUTABLE: a published version can never be overwritten —
 # re-releasing means a new tag. Deploying a version is a separate PR in
-# drift-labs/infrastructure-v3 bumping the gitops image pin.
+# velocity-exchange/infrastructure-v3 bumping the gitops image pin.
 #
-# NOTE: the drift-rs / protocol-v2-shadow sibling checkouts track floating
+# NOTE: the drift-rs / velocity-v1 sibling checkouts track floating
 # refs (next / master), so rebuilding the same tag later may not be
 # bit-identical — but immutability means a published version is never
 # rebuilt anyway.
@@ -17,10 +17,10 @@ name: Publish Velocity ECR (release tag)
 
 on:
   push:
-    tags: ['v*']
+    tags: ["v*"]
 
 env:
-  # drift-rs + protocol-v2-shadow (the `drift` crate) are path-dep siblings of
+  # drift-rs + velocity-v1 (the `drift` crate) are path-dep siblings of
   # swift; the docker build context is the parent dir holding all three.
   DRIFT_RS_REF: next
   SHADOW_REF: master
@@ -41,26 +41,26 @@ jobs:
       - name: Checkout drift-rs
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
         with:
-          repository: drift-labs/drift-rs
+          repository: velocity-exchange/drift-rs
           ref: ${{ env.DRIFT_RS_REF }}
           path: drift-rs
 
-      - name: Generate protocol-v2-shadow read token
+      - name: Generate velocity-v1 read token
         id: shadow-token
         uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # v1
         with:
           app-id: ${{ vars.VELOCITY_SDK_READER_APP_ID }}
           private-key: ${{ secrets.VELOCITY_SDK_READER_PRIVATE_KEY }}
-          owner: drift-labs
-          repositories: protocol-v2-shadow
+          owner: velocity-exchange
+          repositories: velocity-v1
 
-      - name: Checkout protocol-v2-shadow
+      - name: Checkout velocity-v1
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
         with:
-          repository: drift-labs/protocol-v2-shadow
+          repository: velocity-exchange/velocity-v1
           ref: ${{ env.SHADOW_REF }}
           token: ${{ steps.shadow-token.outputs.token }}
-          path: protocol-v2-shadow
+          path: velocity-v1
 
       - name: Configure AWS credentials (non-prod)
         uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4.3.1

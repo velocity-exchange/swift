@@ -11,7 +11,7 @@ defaults:
     working-directory: ./swift
 
 env:
-  # `drift-rs` and the `drift` crate (protocol-v2-shadow) are consumed as path
+  # `drift-rs` and the `drift` crate (velocity-v1) are consumed as path
   # deps on siblings of this repo (see Cargo.toml). These refs pin which
   # commits CI builds against.
   DRIFT_RS_REF: next
@@ -35,26 +35,26 @@ jobs:
       - name: Checkout drift-rs
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
         with:
-          repository: drift-labs/drift-rs
+          repository: velocity-exchange/drift-rs
           ref: ${{ env.DRIFT_RS_REF }}
           path: drift-rs
 
-      - name: Generate protocol-v2-shadow read token
+      - name: Generate velocity-v1 read token
         id: shadow-token
         uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # v1
         with:
           app-id: ${{ vars.VELOCITY_SDK_READER_APP_ID }}
           private-key: ${{ secrets.VELOCITY_SDK_READER_PRIVATE_KEY }}
-          owner: drift-labs
-          repositories: protocol-v2-shadow
+          owner: velocity-exchange
+          repositories: velocity-v1
 
-      - name: Checkout protocol-v2-shadow
+      - name: Checkout velocity-v1
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
         with:
-          repository: drift-labs/protocol-v2-shadow
+          repository: velocity-exchange/velocity-v1
           ref: ${{ env.SHADOW_REF }}
           token: ${{ steps.shadow-token.outputs.token }}
-          path: protocol-v2-shadow
+          path: velocity-v1
 
       - name: Install OS dependencies
         run: apt-get update && apt-get install -y git libssl-dev
