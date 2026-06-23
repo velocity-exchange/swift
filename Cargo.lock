@@ -6032,7 +6032,7 @@ dependencies = [
 [[package]]
 name = "tokio-tungstenite"
 version = "0.24.0"
-source = "git+https://github.com/drift-labs/tokio-tungstenite#99c54fb345f6b1d4f3d6ffb50b50fad463cca660"
+source = "git+https://github.com/velocity-exchange/tokio-tungstenite#99c54fb345f6b1d4f3d6ffb50b50fad463cca660"
 dependencies = [
  "futures-util",
  "log",
@@ -6322,7 +6322,7 @@ checksum = "e421abadd41a4225275504ea4d6566923418b7f05506fbc9c0fe86ba7396114b"
 [[package]]
 name = "tungstenite"
 version = "0.24.0"
-source = "git+https://github.com/drift-labs/tungstenite-rs?branch=drift%2Fpermessage-deflate#2a6e7a62b3651ad520131982e28dc085c4c1b0f8"
+source = "git+https://github.com/velocity-exchange/tungstenite-rs?branch=drift%2Fpermessage-deflate#2a6e7a62b3651ad520131982e28dc085c4c1b0f8"
 dependencies = [
  "byteorder",
  "bytes",
