@@ -1,7 +1,8 @@
 # Ignore-file for swift/Dockerfile (BuildKit uses <dockerfile>.dockerignore in
 # preference to a context-root .dockerignore). Patterns are relative to the
 # build context root — the parent dir holding swift/, drift-rs/ and
-# protocol-v2-shadow/.
+# velocity-v1/.
+# velocity-v1/.
 **/target
 **/.git
 **/node_modules
